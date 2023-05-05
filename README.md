@@ -1,34 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# EVMOS Explorer
 
-## Getting Started
+EVMOS Explorer: [EVMOS] EVM Extensions Hackathon
 
-First, run the development server:
+EVMOS Explorer is a powerful and flexible tool that can help developers to work more effectively with Solidity smart contracts in EVMOS blockchain.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+## Project Description:
+
+EVMOS Explorer was created with the aim of enhancing the overall developer experience on the EVMOS blockchain. In order for EVMOS to gain widespread adoption, developers need to have a seamless and efficient experience when deploying, interacting with, and verifying smart contracts. EVMOS Explorer was designed with this goal in mind.
+
+Explore: developers can effortlessly interact with their smart contracts simply by inputting their contract address. This saves time and effort as there's no need to go through a complex process to interact with the contract.
+
+Deploy: simplifies the smart contract deployment process by handling the compilation and deployment for developers, freeing them from the tedious and lengthy process of creating an entire project. This also eliminates the need for users to export private keys or write scripts to deploy their smart contracts.
+
+Verify: With just one click, developers can verify their previously deployed smart contracts.This quick and easy verification process saves valuable time and effort for developers.
+
+## How it's Made:
+
+EVMOS Explorer's frontend is developed using Next Application and features a visually appealing and user-friendly interface built using HTML, CSS, and Tailwind. The core logic of the platform is developed using Typescript and React to ensure a seamless user experience.
+
+To compile the smart contract code written in Solidity, we use Solc Compiler. Contract deployment and interaction with the blockchain are facilitated using Ethers.js. We enable wallet connection with EVMOS Testnet through the use of Wagmi and Rainbowkit.
+
+To store the contract data, we use IPFS via the Web3.storage service. The IPFS CIDs of the contracts are then indexed in Firebase for easy access and retrieval.
+
+### VIdeo
+
+Video url: xxx
+
+### Vercel deploy
+
+Vercel url: xxx
+
+## Quick start 🏄
+
+Prerequisites: [Node (v16 LTS)](https://nodejs.org/en/download/) and [Git](https://git-scm.com/downloads)
+
+> Clone the repository:
+
+```
+git clone https://github.com/salviega/EVMOS-Explorer.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+yarn
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+> Run the project:
 
-## Learn More
+```
+yarn dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Authors 🏗
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+[salviega](https://github.com/salviega)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[sheva323](https://github.com/sheva323)
