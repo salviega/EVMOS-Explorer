@@ -28,7 +28,7 @@ Video url: xxx
 
 ### Vercel deploy
 
-Vercel url: xxx
+Vercel url: https://evmos-explorer.vercel.app/
 
 ## Quick start 🏄
 
