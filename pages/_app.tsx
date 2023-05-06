@@ -1,9 +1,8 @@
-import '../styles/globals.css';
+import '../styles/globals.css'
 import '@rainbow-me/rainbowkit/styles.css';
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import type { AppProps } from 'next/app';
 import { configureChains, createClient, WagmiConfig, Chain } from 'wagmi';
-import { arbitrum, goerli, mainnet, optimism, polygon } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 import {darkTheme} from '@rainbow-me/rainbowkit'
 import { ChakraProvider } from "@chakra-ui/react";
