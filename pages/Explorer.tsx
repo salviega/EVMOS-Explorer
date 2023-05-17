@@ -126,7 +126,7 @@ const Explorer = () => {
   return (
     <>
       <NavBar />
-      <main className="bg-black min-h-[77.6vh]">
+      <main className="bg-black min-h-[90vh]">
         <h1 className="bg-black text-white text-center text-3xl sm:text-4xl pt-10 pb-14">
           Explore here
         </h1>

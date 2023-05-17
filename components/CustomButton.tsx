@@ -23,7 +23,7 @@ export const CustomButton = () => {
 
         return (
           <div
-            className=" sm:px-4 py-2 animate-text text-2xl bg-orange-600 hover:bg-[#fff] text-black"
+            className=" sm:px-4 py-2 animate-text text-2xl bg-stone-500 hover:bg-[#fff] text-black rounded-lg"
             {...(!ready && {
               "aria-hidden": true,
               style: {
@@ -40,7 +40,7 @@ export const CustomButton = () => {
                     onClick={openConnectModal}
                     className="text-xl play-btn px-2 cursor-pointer animate-text hover:animate-text-hover"
                   >
-                    Sign in
+                    Connect Wallet
                   </span>
                 );
               }
