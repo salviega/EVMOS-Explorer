@@ -10,3 +10,5 @@ export function Deployer() {
 		</div>
 	)
 }
+
+export default Deployer

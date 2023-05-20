@@ -16,7 +16,7 @@ import { firebaseApi } from '@/services/firebaseApi'
 
 const private_key: any = process.env.NEXT_PUBLIC_PRIVATE_KEY
 
-export function Explorer() {
+function Explorer() {
 	const [readFunctions, setReadFunctions] = useState<functionType[]>()
 	const [writeFunctions, setWriteFunctions] = useState<functionType[]>()
 	const [showType, setShowType] = useState<string>()
@@ -206,3 +206,5 @@ export function Explorer() {
 		</>
 	)
 }
+
+export default Explorer

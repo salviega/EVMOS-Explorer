@@ -243,7 +243,7 @@ const Code = () => {
 		})
 
 		toast({
-			title: 'Record Added in the Registry',
+			title: `'Record Added in the Registry: ${contractAddress}`,
 			status: 'success',
 			duration: 3000,
 			isClosable: true
