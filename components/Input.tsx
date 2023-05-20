@@ -1,11 +1,12 @@
 import React from 'react'
-import { RiSearch2Line } from 'react-icons/ri'
+import { RiSearch2Line, RiSearchEyeLine, RiSearchLine } from 'react-icons/ri'
 
 const Input = (props: any) => {
 	return (
 		<div className='rounded-full basis-1/4 flex items-center justify-center bg-orange-300'>
 			<input
 				value={props.input}
+				// placeholder="Enter Contract address"
 				type='text'
 				id=''
 				name='search'

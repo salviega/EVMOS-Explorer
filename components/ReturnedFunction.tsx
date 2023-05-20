@@ -2,7 +2,16 @@ import { explorerLink } from '@/constants/constants'
 import { argType, functionType } from '@/functionality/analyzeABI'
 import { utils, ethers } from 'ethers'
 import React, { useEffect, useState } from 'react'
-import { useAccount, useProvider, useSigner } from 'wagmi'
+import {
+	useAccount,
+	useContract,
+	useContractRead,
+	usePrepareSendTransaction,
+	useProvider,
+	useSendTransaction,
+	useSigner,
+	useWaitForTransaction
+} from 'wagmi'
 
 const ReturnedFunction = (props: any) => {
 	const [inputs, setInputs] = useState<argType[]>()
@@ -21,6 +30,7 @@ const ReturnedFunction = (props: any) => {
 	const { data: signer } = useSigner()
 
 	async function handle() {
+		// console.log(data);
 		setInputs(data.inputs)
 		setOutputs(data.outputs)
 		if (data.stateMutability) {
@@ -28,7 +38,6 @@ const ReturnedFunction = (props: any) => {
 			setIfPayable(payable)
 		}
 	}
-
 	async function handleSubmit() {
 		const abiInterface = new ethers.utils.Interface([data])
 
@@ -37,6 +46,7 @@ const ReturnedFunction = (props: any) => {
 			argInputs
 		)
 
+		/// Also sending the value if the function is payable
 		const tx = {
 			to: contractAddress,
 			data: encodedData,
@@ -47,6 +57,7 @@ const ReturnedFunction = (props: any) => {
 
 		try {
 			if (data.stateMutability == 'view') {
+				// read tx
 				txRes = await provider.call(tx)
 				console.log(txRes)
 
@@ -55,33 +66,53 @@ const ReturnedFunction = (props: any) => {
 					txRes
 				)
 
+				/// Error handling not checked
+
+				console.log(decoded)
+
 				if (!decoded) {
 					console.log('No Output recieved')
 					return
 				}
 
+				// output Formatting needs to be done
 				let formattedOutput
 
 				if (Array.isArray(decoded)) {
 					setArgOutputs(decoded)
 					return
 				} else {
+					//setting the inddividual
+					/// for int
 					formattedOutput = parseInt(decoded)
 					console.log(formattedOutput)
 
+					/// for Address , String
+					// formattedOutput = decoded;
+
+					// pushing the results
 					let currOutput = argOutputs
 					currOutput?.push(formattedOutput)
 					setArgOutputs(currOutput)
 				}
-			} else if (data.stateMutability != 'view') {
-				const txRes = await signer?.sendTransaction(tx)
-				const txLink = `${explorerLink}/tx/${txRes?.hash}`
-				console.log(`Tx completed with the link ${txLink}`)
 
+				// results not showing up on the page on the first reload
+			} else if (data.stateMutability != 'view') {
+				// send write transaction
+				const txRes = await signer?.sendTransaction(tx)
+
+				console.log(txRes)
+
+				const txLink = `${explorerLink}/tx/${txRes?.hash}`
+
+				console.log(`Tx completed with the link ${txLink}`)
+				//// show the tx data in the frontend
 				setTxData(txRes)
 			}
 		} catch (error) {
 			console.log(error)
+
+			/// alert user with the error display on the page
 
 			const decoded: any = abiInterface.decodeErrorResult(`${data.name}`, txRes)
 			console.log(txRes)
@@ -92,6 +123,16 @@ const ReturnedFunction = (props: any) => {
 		let currInput: any[] = argInputs
 		currInput[key] = inputvalue
 		setArgInputs(currInput)
+	}
+
+	async function handleOutputs() {
+		console.log(argOutputs)
+		let currOutput = argOutputs
+		outputs?.map((output, key) => {
+			if (output.type == 'uint256') {
+				const formattedOuput = parseInt(currOutput[key])
+			}
+		})
 	}
 
 	function handleOutput(output: argType, argValue: any) {
@@ -139,6 +180,11 @@ const ReturnedFunction = (props: any) => {
 						/>
 					)
 				})}
+			{/* 
+      <input
+        placeholder="uint"
+        className="px-1 py-1 mb-4 bg-[#D1D7D9] text-black outline-none rounded-sm"
+      /> */}
 			<div className='flex items-center justify-center'>
 				<button
 					onClick={() => handleSubmit()}
@@ -149,7 +195,10 @@ const ReturnedFunction = (props: any) => {
 
 				{txLink && <h2>{txLink}</h2>}
 			</div>
+			{/* returned value */}
 			<div className='py-3'>
+				{/* align the outputs with the name and value
+				 */}
 				{outputs &&
 					outputs.map((output, key) => {
 						return (
@@ -161,11 +210,17 @@ const ReturnedFunction = (props: any) => {
 									{output.name ? output.name : 'Output :'}
 								</h1>
 								<h2 className='text-green-400'>
+									{/* {output.type == "uint256"
+                    ? parseInt(argOutputs[key])
+                    : argOutputs[key]} */}
 									{handleOutput(output, argOutputs[key])}
 								</h2>
 							</div>
 						)
 					})}
+				{/* <h2 className="break-all">
+          0x7B4A8d0862F049E35078E49F2561630Fac079eB9
+        </h2> */}
 			</div>
 		</div>
 	)

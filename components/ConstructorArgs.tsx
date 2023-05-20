@@ -4,9 +4,11 @@ import React, { useEffect, useState } from 'react'
 const ConstructorArguments = (props: any) => {
 	const [cInputs, setCInputs] = useState<argType[]>()
 	const [constructorData, setConstructorData] = useState<functionType>()
+	/// handle the value send thing
 
 	async function handle() {
 		const args = props.args
+		// console.log(args);
 		setCInputs(args[0].inputs)
 		setConstructorData(args[0])
 	}
@@ -40,10 +42,11 @@ const ConstructorArguments = (props: any) => {
 				cInputs.map((input, key) => {
 					return (
 						<input
-							className='px-1 py-1 mb-2 text-black rounded-md'
 							key={key}
 							placeholder={input.name}
 							value={props.inputs[key]}
+							// type={getType(input.type)}
+							className='px-1 py-1 mb-2 text-black rounded-md'
 							onChange={e => handleInput(e.target.value, key)}
 						/>
 					)

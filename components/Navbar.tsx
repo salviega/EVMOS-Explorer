@@ -4,10 +4,11 @@ import { Transition } from '@headlessui/react'
 import { BiMenu } from 'react-icons/bi'
 import { MdClose } from 'react-icons/md'
 import Image from 'next/image'
-import logo from '@/assets/images/logo.png'
+import logo from '../public/assets/images/logo.png'
 import CustomButton from './CustomButton'
 
 const Navbar = () => {
+	// --------- States here -------------
 	const [expand, setExpand] = useState<boolean>(false)
 
 	return (

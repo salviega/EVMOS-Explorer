@@ -12,6 +12,8 @@ export const CustomButton = () => {
 				authenticationStatus,
 				mounted
 			}) => {
+				// Note: If your app doesn't use authentication, you
+				// can remove all 'authenticationStatus' checks
 				const ready = mounted && authenticationStatus !== 'loading'
 				const connected =
 					ready &&
@@ -79,9 +81,11 @@ export const CustomButton = () => {
 												)}
 											</div>
 										)}
+										{/* {chain.name} */}
 									</button>
 
 									<button onClick={openAccountModal} type='button'>
+										{/* {account.displayName} */}
 										{account.displayBalance
 											? ` (${account.displayBalance})`
 											: ''}

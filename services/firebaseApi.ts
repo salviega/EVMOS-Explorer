@@ -10,7 +10,7 @@ import {
 	where
 } from 'firebase/firestore'
 
-import { database } from '@/config/firebase.config'
+import { database } from '@/firebase.config'
 
 type Contract = {
 	address: string

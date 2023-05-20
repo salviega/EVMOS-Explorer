@@ -1,4 +1,4 @@
-export const explorerLink = 'https://eth.bd.evmos.dev:8545'
+export const explorerLink = 'https://evm.evmos.dev'
 
 export const Registery_address = '0xE8e1543235e6C35C656ef0b28526C61571583f4B'
 

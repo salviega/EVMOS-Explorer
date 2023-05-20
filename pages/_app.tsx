@@ -1,8 +1,6 @@
 import '@/styles/globals.css'
-import '@rainbow-me/rainbowkit/styles.css'
-import React from 'react'
-import { ChakraProvider } from '@chakra-ui/react'
 import type { AppProps } from 'next/app'
+import '@rainbow-me/rainbowkit/styles.css'
 import {
 	getDefaultWallets,
 	RainbowKitProvider,
@@ -10,6 +8,8 @@ import {
 } from '@rainbow-me/rainbowkit'
 import { Chain, configureChains, createClient, WagmiConfig } from 'wagmi'
 import { publicProvider } from 'wagmi/providers/public'
+import { ChakraProvider } from '@chakra-ui/react'
+import React from 'react'
 
 const evmosTestnet: Chain = {
 	id: 9000,
@@ -34,7 +34,10 @@ const evmosTestnet: Chain = {
 	testnet: true
 }
 
-const { chains, provider } = configureChains([evmosTestnet], [publicProvider()])
+const { chains, provider, webSocketProvider } = configureChains(
+	[evmosTestnet],
+	[publicProvider()]
+)
 
 const { connectors } = getDefaultWallets({
 	appName: 'My RainbowKit App',
