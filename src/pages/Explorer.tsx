@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '@/components/Navbar'
+import { useToast } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
+import { useAccount, useContract, useProvider } from 'wagmi'
 import Input from '@/components/Input'
+import Navbar from '@/components/Navbar'
 import ReturnedFunction from '@/components/ReturnedFunction'
+import { Registery_ABI, Registery_address } from '@/constants/constants'
 import {
 	analyzeABI,
 	contractDataType,
 	functionType
 } from '@/functionality/analyzeABI'
-import { Registery_ABI, Registery_address } from '@/constants/constants'
-import { useAccount, useContract, useProvider } from 'wagmi'
-import { explorerLink } from '@/constants/constants'
-import { useToast } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
 import ReturnedSourceCode from '@/components/ReturnedSourceCode'
 import { firebaseApi } from '@/services/firebaseApi'
 
 const private_key: any = process.env.NEXT_PUBLIC_PRIVATE_KEY
 
-const Explorer = () => {
-	const { getItemByAddress } = firebaseApi()
-	const router = useRouter()
-
+function Explorer() {
 	const [readFunctions, setReadFunctions] = useState<functionType[]>()
 	const [writeFunctions, setWriteFunctions] = useState<functionType[]>()
 	const [showType, setShowType] = useState<string>()
@@ -33,15 +29,12 @@ const Explorer = () => {
 	const [isWriteActive, setIsWriteActive] = useState<boolean>(false)
 	const [isSourceCodeActive, setIsSourceCodeActive] = useState<boolean>(false)
 
-	const { address } = useAccount()
-	const provider = useProvider()
-	const Registery_Contract = useContract({
-		address: Registery_address,
-		abi: Registery_ABI,
-		signerOrProvider: provider
-	})
+	const router = useRouter()
+	const { getItemByAddress } = firebaseApi()
+
 	const toast = useToast()
 	console.log(showType, 'showtype here')
+
 	useEffect(() => {
 		const queryAddress: any = router.query.address
 		if (queryAddress) {
@@ -52,21 +45,15 @@ const Explorer = () => {
 	async function searchContract() {
 		if (!contractAddress) return
 		try {
-			// const response = await Registery_Contract?.getContractRecord(
-			//   contractAddress
-			// );
-
-			console.log(contractAddress, 'contract addres:')
-
 			const response = await getItemByAddress(contractAddress)
 
 			toast({
-				title: 'Address fetched!!!',
+				title: 'Address fetched!',
 				status: 'success',
 				duration: 2000,
 				isClosable: true
 			})
-			// console.log(response);
+
 			if (!response?.address) {
 				toast({
 					title: 'Contract does not exist',
@@ -75,10 +62,8 @@ const Explorer = () => {
 					duration: 2000,
 					isClosable: true
 				})
-				// console.log("Contract does not exist");
 				setContractExists(false)
 				return
-				/// notify that Contract doesnot Exists
 			}
 			setIpfsURI(response.IPFSURL)
 			setContractExists(true)
@@ -90,13 +75,12 @@ const Explorer = () => {
 				duration: 2000,
 				isClosable: true
 			})
-			console.log(error)
+			console.error(error)
 		}
 	}
 
 	async function fetchContractData(ipfsURL: string) {
 		const contractData = await (await fetch(ipfsURL)).json()
-		// console.log(contractData);
 
 		if (!contractData) {
 			toast({
@@ -127,8 +111,8 @@ const Explorer = () => {
 
 	return (
 		<>
-			<Navbar />
-			<main className='bg-black min-h-[77.6vh]'>
+			<main>
+				<Navbar />
 				<h1 className='bg-black text-white text-center text-3xl sm:text-4xl pt-10 pb-14'>
 					Explore here
 				</h1>

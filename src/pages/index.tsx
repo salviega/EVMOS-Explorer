@@ -6,7 +6,7 @@ const metadata = {
 	description: '[EVMOS] EVM Extensions Hackathon'
 }
 
-export default function Home() {
+export default function Home(): JSX.Element {
 	return (
 		<>
 			<Head>
