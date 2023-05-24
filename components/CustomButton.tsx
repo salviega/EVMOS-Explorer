@@ -23,7 +23,7 @@ export const CustomButton = () => {
 
 				return (
 					<div
-						className=' sm:px-4 py-2 animate-text text-2xl bg-orange-600 hover:bg-[#fff] text-black'
+						className=' sm:px-4 py-2 animate-text text-2xl bg-emerald-800 hover:bg-[#A7F3D0] text-black rounded-lg'
 						{...(!ready && {
 							'aria-hidden': true,
 							style: {

@@ -42,7 +42,7 @@ const Navbar = () => {
 						setExpand(!expand)
 					}}
 				>
-					<Image className='w-[150px]' src={logo} alt='logo' />
+					<Image className='w-[50px]' src={logo} alt='logo' />
 				</Link>
 			</div>
 			<ul className='hidden lg:flex justify-around items-center basis-2/5 text-lg'>
@@ -55,14 +55,14 @@ const Navbar = () => {
 				</Link>
 				<Link href='/Deployer'>
 					<div className='cursor-pointer relative group py-0.5 px-0.5 '>
-						<button className='relative group-hover:border-t-2 border-[#ed4e33]  py-1 transition-all uppercase'>
+						<button className='relative group-hover:border-t-2 border-[#ed4e33]  py-1 transition-all '>
 							Deployer
 						</button>
 					</div>
 				</Link>
 				<Link href='/Verify'>
 					<div className='cursor-pointer relative group py-0.5 px-0.5 '>
-						<button className='relative group-hover:border-t-2 border-[#ed4e33]  py-1 transition-all uppercase'>
+						<button className='relative group-hover:border-t-2 border-[#ed4e33]  py-1 transition-all '>
 							Verifier
 						</button>
 					</div>

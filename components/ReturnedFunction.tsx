@@ -185,50 +185,6 @@ const ReturnedFunction = (props: any) => {
         placeholder="uint"
         className="px-1 py-1 mb-4 bg-[#D1D7D9] text-black outline-none rounded-sm"
       /> */}
-<<<<<<< HEAD
-      <div className="flex items-center justify-center">
-        <button
-          onClick={() => handleSubmit()}
-          className="py-2 px-10 bg-orange-600 hover:bg-[#fff] text-black mb-5"
-        >
-          Submit
-        </button>
-
-        {txLink && <h2>{txLink}</h2>}
-      </div>
-      {/* returned value */}
-      <div className="py-3">
-        {/* align the outputs with the name and value
-         */}
-        {outputs &&
-          outputs.map((output, key) => {
-            return (
-              <div
-                key={key}
-                className="flex items-center justify-between text-xl"
-              >
-                <h1 className="text-lg">
-                  {output.name ? output.name : "Output :"}
-                </h1>
-                <h2 className="text-green-400">
-                  {/* {output.type == "uint256"
-                    ? parseInt(argOutputs[key])
-                    : argOutputs[key]} */}
-                  {handleOutput(output, argOutputs[key])}
-                </h2>
-              </div>
-            );
-          })}
-        {/* <h2 className="break-all">
-          0x7B4A8d0862F049E35078E49F2561630Fac079eB9
-        </h2> */}
-      </div>
-    </div>
-  );
-};
-
-export default ReturnedFunction;
-=======
 			<div className='flex items-center justify-center'>
 				<button
 					onClick={() => handleSubmit()}
@@ -271,4 +227,3 @@ export default ReturnedFunction;
 }
 
 export default ReturnedFunction
->>>>>>> c3ef35eef657fefa0b13b447f5950fd176c11f59
