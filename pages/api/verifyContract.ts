@@ -1,10 +1,4 @@
-import { Contract, Wallet, ethers } from 'ethers'
-import { Registery_ABI, Registery_address } from '@/constants/constants'
-import { storeContract } from '@/functionality/storeData'
-import type { NextApiRequest, NextApiResponse } from 'next'
-
-const private_key: any = process.env.NEXT_PUBLIC_PRIVATE_KEY
-const RPC_LINK = process.env.NEXT_PUBLIC_RPC_URL
+// send in the ContractData as
 
 type contractDataType = {
 	name: string
@@ -14,6 +8,14 @@ type contractDataType = {
 	bytecode: string
 	code: any
 }
+
+import { Registery_ABI, Registery_address } from '@/constants/constants'
+import { storeContract } from '@/functionality/storeData'
+import { Contract, Wallet, ethers } from 'ethers'
+import type { NextApiRequest, NextApiResponse } from 'next'
+
+const private_key: any = process.env.NEXT_PUBLIC_PRIVATE_KEY
+const RPC_LINK = process.env.NEXT_PUBLIC_RPC_URL
 
 async function verifyContract(req: NextApiRequest, res: NextApiResponse) {
 	if (!req.body.contractData) {
@@ -29,9 +31,11 @@ async function verifyContract(req: NextApiRequest, res: NextApiResponse) {
 	try {
 		const CID = await storeContract(contractData)
 		const IPFSURL = `https://w3s.link/ipfs/${CID}`
-		console.log('IPFSURL: ', IPFSURL)
+		console.log(IPFSURL)
+		// setIpfsLink(IPFSURL);
 
-		// Store the IPFS link somewhere
+		/// Store the IPFS link somewhere
+
 		const provider = new ethers.providers.JsonRpcProvider(RPC_LINK)
 		const manager_wallet = new Wallet(private_key, provider)
 		const registery_contract = new Contract(
@@ -48,10 +52,11 @@ async function verifyContract(req: NextApiRequest, res: NextApiResponse) {
 		await tx.wait()
 		console.log('Record Added in the registery')
 
-		res.status(200).json({ output: tx }) // return: tx hash
+		/// Record of the tx with the txHash
+		res.status(200).json({ output: tx })
 	} catch (error) {
 		res.status(400).json({ output: error })
-		console.error(error)
+		console.log(error)
 	}
 }
 

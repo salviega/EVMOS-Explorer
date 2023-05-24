@@ -1,6 +1,6 @@
+import solc from 'solc'
 import fs from 'fs'
 import path from 'path'
-import solc from 'solc'
 
 export default async function handler(req, res) {
 	if (!req.body.sourceCode) {
@@ -10,10 +10,14 @@ export default async function handler(req, res) {
 	const code = req.body.sourceCode
 
 	try {
+		// Compile the contracts
 		const input = JSON.stringify(prepareInput(code))
 		const compiled = solc.compile(input, { import: importFile })
 		const output = JSON.parse(compiled) // Add this line
 
+		//console.log("Compiler output:", output);
+
+		// Error handling
 		if (output.errors) {
 			for (const error of output.errors) {
 				if (error.severity === 'warning') {
@@ -26,10 +30,12 @@ export default async function handler(req, res) {
 
 		var contractDetails
 		for (var contractName in output.contracts['mainContract.sol']) {
+			// Use 'mainContract.sol' instead of 'file.sol'
+			// preparing the response on successful compilation
 			const response = {
 				name: contractName,
-				abi: output.contracts['mainContract.sol'][contractName].abi,
-				bytecode: `0x${output.contracts['mainContract.sol'][contractName].evm.bytecode.object}`
+				abi: output.contracts['mainContract.sol'][contractName].abi, /// get the abi
+				bytecode: `0x${output.contracts['mainContract.sol'][contractName].evm.bytecode.object}` // get the bytecode
 			}
 
 			contractDetails = response
@@ -49,6 +55,7 @@ function getImports(sourceCode) {
 
 	while ((match = importRegex.exec(sourceCode))) {
 		const importPath = match[1]
+		console.log(importPath)
 		const importPathParts = importPath.split('/')
 		const packageName = importPathParts[0]
 		const packagePath = importPathParts.slice(1).join('/')
@@ -94,7 +101,7 @@ function prepareInput(sourceCode) {
 			},
 			optimizer: {
 				enabled: true,
-				runs: 200
+				runs: 200 // Set the number of optimization runs to 200
 			}
 		}
 	}

@@ -1,5 +1,16 @@
 const nextConfig = {
-  reactStrictMode: true,
+	reactStrictMode: true,
+
+	webpack: (config, { isServer }) => {
+		if (!isServer) {
+			config.module.rules.push({
+				test: /\.sol$/,
+				use: 'solidity-loader'
+			})
+		}
+		return config
+	}
+}
 
   webpack: (config, { isServer }) => {
     if (!isServer) {

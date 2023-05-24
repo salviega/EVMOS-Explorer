@@ -1,8 +1,8 @@
-import React from 'react'
 import Navbar from '@/components/Navbar'
 import Code from '@/components/VerifyCode'
+import React from 'react'
 
-export function Deployer() {
+const Deployer = () => {
 	return (
 		<div className='min-h-[100vh] bg-black'>
 			<Navbar />

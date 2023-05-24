@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Explorer } from './Explorer'
+import Explorer from './Explorer'
 
 const metadata = {
 	title: 'EVMOS Explorer',
