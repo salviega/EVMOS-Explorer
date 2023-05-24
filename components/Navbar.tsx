@@ -12,7 +12,7 @@ const Navbar = () => {
 	const [expand, setExpand] = useState<boolean>(false)
 
 	return (
-		<nav className='max-w-full min-h-max bg-black flex justify-between items-center px-6  lg:flex lg:justify-around lg:px-0 font-plus lg:items-center text-white'>
+		<nav className='max-w-full min-h-max bg-amber-950 flex justify-between items-center px-6  lg:flex lg:justify-around lg:px-0 font-plus lg:items-center text-white'>
 			{!expand ? (
 				<a
 					href='#'
@@ -42,27 +42,27 @@ const Navbar = () => {
 						setExpand(!expand)
 					}}
 				>
-					<Image className='w-[150px]' src={logo} alt='logo' />
+					<Image className='w-[50px]' src={logo} alt='logo' />
 				</Link>
 			</div>
 			<ul className='hidden lg:flex justify-around items-center basis-2/5 text-lg'>
 				<Link href='/Explorer'>
 					<div className='cursor-pointer relative group p-0.5'>
-						<button className='relative group-hover:border-t-2 border-[#ed4e33]  py-1 transition-all uppercase'>
+						<button className='relative group-hover:border-t-2 border-[#ed4e33]  py-1 transition-all '>
 							Explorer
 						</button>
 					</div>
 				</Link>
 				<Link href='/Deployer'>
 					<div className='cursor-pointer relative group py-0.5 px-0.5 '>
-						<button className='relative group-hover:border-t-2 border-[#ed4e33]  py-1 transition-all uppercase'>
+						<button className='relative group-hover:border-t-2 border-[#ed4e33]  py-1 transition-all '>
 							Deployer
 						</button>
 					</div>
 				</Link>
 				<Link href='/Verify'>
 					<div className='cursor-pointer relative group py-0.5 px-0.5 '>
-						<button className='relative group-hover:border-t-2 border-[#ed4e33]  py-1 transition-all uppercase'>
+						<button className='relative group-hover:border-t-2 border-[#ed4e33]  py-1 transition-all '>
 							Verifier
 						</button>
 					</div>
