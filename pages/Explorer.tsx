@@ -218,6 +218,9 @@ const Explorer = () => {
 						)}
 					</div>
 				)}
+        <div/>
+        <div/>
+        <div/>
 			</main>
 		</>
 	)
